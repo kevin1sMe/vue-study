@@ -1,0 +1,15 @@
+<head> </head>
+<body>
+<div>
+    <h2 id="app"> </h2>
+    <input type="text" id = "todo-input">
+</div>
+
+<script src="../scripts/jquery-3.6.0.js"></script>
+<script>
+    $('#todo-input').on('input',  function(){
+        let val = $(this).val() // input value
+        $('#app').html(val)
+    })
+</script>
+</body>

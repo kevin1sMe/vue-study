@@ -1,0 +1,19 @@
+<head> </head>
+<body>
+<div id = "app">
+    <h2 >  {{ title }} </h2>
+    <input type="text" v-model = "title">
+</div>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+    const App = {
+        data() {
+            return {
+                title : "在这里写点啥"
+            }
+        }
+    }
+    Vue.createApp(App).mount('#app')
+</script>
+</body>

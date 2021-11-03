@@ -1,0 +1,37 @@
+<head> </head>
+
+<body>
+    <div id="app">
+        <h2> {{ title }} </h2>
+        <!-- @keydown 是键盘敲下  @click是点击  @keydown.enter是按回车 -->
+        <input type="text" v-model="title" @keydown.enter="addTodo">
+        <ul>
+            <li v-for="todo in todos"> {{todo}}</li>
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const App = {
+            data() {
+                return {
+                    title: "",
+                    todos: ['吃饭', '睡觉', '哄娃']
+                }
+            },
+            methods: {
+                addTodo() {
+                    // 数据驱动页面，可直接访问data里的数据
+                    if (this.title != "") {
+                        this.todos.push(this.title)
+                        this.title = ""
+                        console.log(this.todos)
+                    }
+                }
+            }
+
+        }
+
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>

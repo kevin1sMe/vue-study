@@ -1,0 +1,69 @@
+<head> </head>
+
+<body>
+    <div id="app">
+        <h2> {{ title }} </h2>
+        <!-- @keydown 是键盘敲下  @click是点击  @keydown.enter是按回车 -->
+        <input type="text" v-model="title" @keydown.enter="addTodo">
+        <ul>
+            <li v-for="todo in todos">
+                <input type="checkbox" v-model="todo.done">
+                <!-- 冒号：开头的属性是用来传递数据的，下面这个:class等的意思是根据todo.done来决定是否有done这个class -->
+                <span :class="{done:todo.done}"> {{todo.title}}</span>
+            </li>
+        </ul>
+        <div>
+            {{active}}
+            /
+            {{all}}
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const App = {
+            data() {
+                return {
+                    title: "",
+                    todos: [
+                        { title: '吃饭', done: false },
+                        { title: '睡觉', done: true },
+                        { title: '哄娃', done: false },
+                    ]
+                }
+            },
+            methods: {
+                addTodo() {
+                    // 数据驱动页面，可直接访问data里的数据
+                    if (this.title != "") {
+                        this.todos.push({ title: this.title, done: false })
+                        this.title = ""
+                        console.log(this.todos)
+                    }
+                }
+            },
+
+            // 把计算放在js中，避免了模版复杂化
+            computed: {
+                active() {
+                    return this.todos.filter(v => !v.done).length
+                },
+                all() {
+                    return this.todos.length
+                }
+            }
+
+
+        }
+
+        Vue.createApp(App).mount('#app')
+    </script>
+
+    <style>
+        .done {
+            color: gray;
+            text-decoration: line-through;
+        }
+    </style>
+</body>

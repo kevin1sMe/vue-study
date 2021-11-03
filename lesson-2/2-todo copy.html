@@ -1,0 +1,23 @@
+<head> </head>
+<body>
+<div id = "app">
+    <h2 >  {{ title }} </h2>
+    <input type="text" v-model = "title">
+    <ul>
+        <li v-for="todo in todos"> {{todo}}</li>
+    </ul>
+</div>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+    const App = {
+        data() {
+            return {
+                title : "每天在做啥",
+                todos: ['吃饭', '睡觉', '哄娃']
+            }
+        }
+    }
+    Vue.createApp(App).mount('#app')
+</script>
+</body>
